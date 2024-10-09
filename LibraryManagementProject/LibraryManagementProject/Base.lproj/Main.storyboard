@@ -212,14 +212,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ee-i4-T8T">
-                                                    <rect key="frame" x="20" y="28" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ee-i4-T8T">
+                                                    <rect key="frame" x="30" y="21" width="333" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6ee-i4-T8T" firstAttribute="top" secondItem="Gz8-RO-PWH" secondAttribute="topMargin" constant="10" id="McY-JU-Gdu"/>
+                                                <constraint firstItem="6ee-i4-T8T" firstAttribute="leading" secondItem="Gz8-RO-PWH" secondAttribute="leadingMargin" constant="10" id="Ov3-LM-ixk"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6ee-i4-T8T" secondAttribute="trailing" constant="10" id="cOZ-0K-3Cv"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.38431372549999998" green="0.58431372550000005" blue="0.51764705879999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>

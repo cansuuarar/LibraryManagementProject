@@ -9,28 +9,22 @@ import UIKit
 
 class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    
-
     @IBOutlet weak var memberNameTextField: UITextField!
     @IBOutlet weak var borrowBookTableView: UITableView!
-    
     
     var selectedBooks: [Book] = []
     var limit = 2
    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         borrowBookTableView.dataSource = self
         borrowBookTableView.delegate = self
         
         borrowBookTableView.allowsMultipleSelection = true
-       
     }
-   
 
     @IBAction func borrowBookButton(_ sender: UIButton) {
-        if memberNameTextField.text?.isEmpty == nil {
+        if memberNameTextField.text!.isEmpty {
             let alertController = UIAlertController(title: "Warning", message:
                                                         "member name cannot be empty!", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
@@ -46,11 +40,9 @@ class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         }
-        
-        
 
         memberNameTextField.text = ""
-
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,8 +58,6 @@ class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedBook = BookManager.shared.books[indexPath.row]
         selectedBooks.append(selectedBook)
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -94,8 +84,30 @@ class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 148 // Örneğin sabit bir yükseklik.
+        return 148
     }
 
     
 }
+
+
+/*
+  
+ if let, guard let: optional değerleri güvenli bir şekilde unwrap etmek için kullanılır.
+ 
+ if let:bir optional değerin nil olup olmadığını kontrol eder ve nil değilse bu değer kullanılır.
+ if let constantName = optionalValue {
+ optionalValue nil değilse bu blok çalışır, constant name burada kullanılabilir
+ } else {
+    optionalValue nil ise bu blok çalışır, opsiyonel.
+ }
+ 
+ guard let: bir optional değerin nil olup olmadığını kontrol eder ve eğer nil ise mevcut akışı terk eder.
+ guard let constantName = optionalVlue else {
+    optional balue nil ise bu blok çalışır
+ return
+ }
+ optionalValue nil değilse buradan sonra çalışır, constantName kullanılabilir.
+ 
+ 
+ */
