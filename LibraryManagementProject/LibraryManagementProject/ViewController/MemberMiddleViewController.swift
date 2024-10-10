@@ -7,23 +7,15 @@
 
 import UIKit
 
-class MemberMiddleViewController: UIViewController {
-    
-    
-    @IBOutlet weak var memberNameTextField: UITextField!
+final class MemberMiddleViewController: UIViewController {
+
+    @IBOutlet private weak var memberNameTextField: UITextField!
  
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-
-
-    @IBAction func beMember(_ sender: UIButton) {
+    @IBAction private func beMember(_ sender: UIButton) {
         let memberName = memberNameTextField.text ?? ""
         let member = Member(name: memberName)
         MemberManager.shared.members.append(member)
 
         memberNameTextField.text = ""
     }
-
 }

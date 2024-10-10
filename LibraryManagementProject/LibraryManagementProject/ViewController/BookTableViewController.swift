@@ -7,14 +7,14 @@
 
 import UIKit
 
-class BookTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+final class BookTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
    
-    @IBOutlet weak var bookTableView: UITableView!
+    @IBOutlet private weak var bookTableView: UITableView!
     
-    var bookName: String?
-    var bookType: String?
-    var pageCount: Int?
-    var shelfLocation: String?
+    private var bookName: String?
+    private var bookType: String?
+    private var pageCount: Int?
+    private var shelfLocation: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +22,8 @@ class BookTableViewController: UIViewController, UITableViewDelegate, UITableVie
         bookTableView.dataSource = self
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BookManager.shared.books.count
+        BookManager.shared.books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,7 +36,6 @@ class BookTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.shelfLocation.text = element.shelfLocation
         
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

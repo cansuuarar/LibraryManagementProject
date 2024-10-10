@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MemberCell: UITableViewCell {
+final class MemberCell: UITableViewCell {
     
     @IBOutlet weak var memberName: UILabel!
     

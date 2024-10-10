@@ -7,46 +7,44 @@
 
 import UIKit
 
-class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     @IBOutlet weak var memberNameTextField: UITextField!
     @IBOutlet weak var borrowBookTableView: UITableView!
     
-    var selectedBooks: [Book] = []
-    var limit = 2
-   
+    private var selectedBooks: [Book] = []
+    private let limit = 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         borrowBookTableView.dataSource = self
         borrowBookTableView.delegate = self
-        
         borrowBookTableView.allowsMultipleSelection = true
     }
 
-    @IBAction func borrowBookButton(_ sender: UIButton) {
-        if memberNameTextField.text!.isEmpty {
+    @IBAction private func borrowBookButton(_ sender: UIButton) {
+        guard let memberName = memberNameTextField.text, !memberName.isEmpty else {
             let alertController = UIAlertController(title: "Warning", message:
                                                         "member name cannot be empty!", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
             }))
             self.present(alertController, animated: true, completion: nil)
+            return
         }
-        else {
-            for member in MemberManager.shared.members {
-                if member.name == memberNameTextField.text {
-                    for book in selectedBooks {
-                        member.books.append(book)
-                    }
+       
+        for member in MemberManager.shared.members {
+            if member.name == memberName {
+                for book in selectedBooks {
+                    member.books.append(book)
                 }
             }
         }
 
         memberNameTextField.text = ""
-    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BookManager.shared.books.count
+        BookManager.shared.books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,9 +54,20 @@ class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if selectedBooks.count == limit {
+            let alertController = UIAlertController(title: "Warning",
+                                                    message: "You are limited to \(limit) selections",
+                                                    preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in }))
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
         let selectedBook = BookManager.shared.books[indexPath.row]
         selectedBooks.append(selectedBook)
     }
+    //ctrl +i : format
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let deSelectedBook = BookManager.shared.books[indexPath.row]
@@ -67,27 +76,10 @@ class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if let sr = borrowBookTableView.indexPathsForSelectedRows {
-                    if sr.count == limit {
-                        let alertController = UIAlertController(title: "Warning", message:
-                                                                    "You are limited to \(limit) selections", preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
-                        }))
-                        self.present(alertController, animated: true, completion: nil)
-                        
-                        return nil
-                    }
-                }
-                
-        return indexPath
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 148
     }
 
-    
 }
 
 
@@ -110,4 +102,18 @@ class BorrowBookViewController: UIViewController, UITableViewDelegate, UITableVi
  optionalValue nil değilse buradan sonra çalışır, constantName kullanılabilir.
  
  
+
+ 
+ if selected kitap sayısı <=2
+ kitap sayısı +1
+
+ 
  */
+
+
+
+
+
+
+
+

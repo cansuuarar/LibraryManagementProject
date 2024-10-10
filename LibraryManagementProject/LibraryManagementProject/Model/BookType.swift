@@ -9,8 +9,9 @@ import Foundation
 
 enum BookType : String, CaseIterable {
     case selfHelp = "Self Help"
-    case CRIME = "Crime"
-    case ROMANCE = "Romance"
-    case NOVEL = "Novel"
+    case crime = "Crime"
+    case romance = "Romance"
+    case novel = "Novel"
 }
 
+// case iterable: A type that provides a collection of all of its values., tüm case ler içerisinde dönmemi sağlıyor.

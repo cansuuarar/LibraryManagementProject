@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MemberManager {
+final class MemberManager {
     
     static let shared = MemberManager()
     var members: [Member] = []

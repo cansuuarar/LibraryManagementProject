@@ -7,7 +7,8 @@
 
 import Foundation
 
-class Book : Equatable {
+final class Book : Equatable {
+    
     static func == (lhs: Book, rhs: Book) -> Bool {
         lhs.name == rhs.name
     }
@@ -19,7 +20,6 @@ class Book : Equatable {
         return "\(name.first!) - \(pageCount)"
     }
    
-    
     init(name: String, bookType: BookType, pageCount : Int) {
         self.name = name
         self.bookType = bookType

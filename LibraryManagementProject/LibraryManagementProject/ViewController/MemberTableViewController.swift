@@ -7,9 +7,9 @@
 
 import UIKit
 
-class MemberTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class MemberTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var memberTableView: UITableView!
+    @IBOutlet private weak var memberTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,14 +17,12 @@ class MemberTableViewController: UIViewController, UITableViewDelegate, UITableV
         memberTableView.dataSource = self
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         MemberManager.shared.members.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = memberTableView.dequeueReusableCell(withIdentifier: "memberCell", for: indexPath) as! MemberCell
-
         let element = MemberManager.shared.members[indexPath.row]
         
         cell.memberName.text = element.name
@@ -32,9 +30,9 @@ class MemberTableViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 148 // Örneğin sabit bir yükseklik.
     }
 
+    
 }

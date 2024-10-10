@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookManager {
+final class BookManager {
     
     static let shared = BookManager()
     var books: [Book] = []
